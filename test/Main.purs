@@ -29,7 +29,7 @@ main = run [consoleReporter] do
      - sym
      -}
     describe "prodIdent" do
-      testIso (prodIdent :: Iso A (Tuple Unit A))
+      testIso (prodIdent :: Iso (Tuple Unit A) A)
     describe "prodAssoc" do
       testIso (prodAssoc :: Iso (Tuple A (Tuple B C)) (Tuple (Tuple A B) C))
     describe "prodComm" do

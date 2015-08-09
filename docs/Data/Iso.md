@@ -48,8 +48,10 @@ Isomorphism is symmetric
 #### `prodIdent`
 
 ``` purescript
-prodIdent :: forall a. Iso a (Tuple Unit a)
+prodIdent :: forall a. Iso (Tuple Unit a) a
 ```
+
+$1 \times a = a$
 
 #### `prodAssoc`
 
@@ -57,11 +59,15 @@ prodIdent :: forall a. Iso a (Tuple Unit a)
 prodAssoc :: forall a b c. Iso (Tuple a (Tuple b c)) (Tuple (Tuple a b) c)
 ```
 
+$a \times (b \times c) = (a \times b) \times c$ 
+
 #### `prodComm`
 
 ``` purescript
 prodComm :: forall a b. Iso (Tuple a b) (Tuple b a)
 ```
+
+$a \times b = b \times a$
 
 #### `prodZeroZero`
 
@@ -69,11 +75,15 @@ prodComm :: forall a b. Iso (Tuple a b) (Tuple b a)
 prodZeroZero :: forall a b. Iso (Tuple Void a) Void
 ```
 
+$0 \times a = 0$
+
 #### `coprodIdent`
 
 ``` purescript
-coprodIdent :: forall a. Iso a (Either Void a)
+coprodIdent :: forall a. Iso (Either Void a) a
 ```
+
+$0 + a = a$
 
 #### `coprodAssoc`
 
@@ -81,11 +91,15 @@ coprodIdent :: forall a. Iso a (Either Void a)
 coprodAssoc :: forall a b c. Iso (Either a (Either b c)) (Either (Either a b) c)
 ```
 
+$a + (b + c) = (a + b) + c$
+
 #### `coprodComm`
 
 ``` purescript
 coprodComm :: forall a b. Iso (Either a b) (Either b a)
 ```
+
+$a + b = b + a$
 
 #### `distribute`
 
@@ -93,11 +107,15 @@ coprodComm :: forall a b. Iso (Either a b) (Either b a)
 distribute :: forall a b c. Iso (Tuple a (Either b c)) (Either (Tuple a b) (Tuple a c))
 ```
 
+$a \times (b + c) = (a \times b) + (a \times c)$
+
 #### `onePlusMaybe`
 
 ``` purescript
 onePlusMaybe :: forall a. Iso (Either Unit a) (Maybe a)
 ```
+
+$1 + a = `Maybe` a$
 
 #### `onePlusOneIsTwo`
 
@@ -105,11 +123,15 @@ onePlusMaybe :: forall a. Iso (Either Unit a) (Maybe a)
 onePlusOneIsTwo :: forall a. Iso (Either Unit Unit) Boolean
 ```
 
+$1 + 1 = 2$
+
 #### `expProdSum`
 
 ``` purescript
 expProdSum :: forall a b c. Iso (Tuple (b -> a) (c -> a)) (Either b c -> a)
 ```
+
+$a^b \times a^c = a^{b + c}$
 
 #### `expExpProd`
 
@@ -117,11 +139,15 @@ expProdSum :: forall a b c. Iso (Tuple (b -> a) (c -> a)) (Either b c -> a)
 expExpProd :: forall a b c. Iso (Tuple a b -> c) (a -> b -> c)
 ```
 
+$c^{a \times b} = (c^{b})^{a}$
+
 #### `expOne`
 
 ``` purescript
 expOne :: forall a. Iso (Unit -> a) a
 ```
+
+$a^1 = a$
 
 #### `expZero`
 
@@ -129,11 +155,15 @@ expOne :: forall a. Iso (Unit -> a) a
 expZero :: forall a. Iso (Void -> a) Unit
 ```
 
+$a^0 = 1$
+
 #### `functorCong`
 
 ``` purescript
 functorCong :: forall a b f. (Functor f) => Iso a b -> Iso (f a) (f b)
 ```
+
+$a = b \implies f(a) = f(b)$
 
 #### `bifunctorCongLeft`
 
@@ -141,16 +171,22 @@ functorCong :: forall a b f. (Functor f) => Iso a b -> Iso (f a) (f b)
 bifunctorCongLeft :: forall a a' b f. (Bifunctor f) => Iso a a' -> Iso (f a b) (f a' b)
 ```
 
+$a = a\prime \implies f(a, b) = f(a\prime, b)$
+
 #### `contraCong`
 
 ``` purescript
 contraCong :: forall a b c f. (Contravariant f) => Iso a b -> Iso (f a) (f b)
 ```
 
+$a = b \implies f(a) = f(b)$
+
 #### `profunctorCongLeft`
 
 ``` purescript
 profunctorCongLeft :: forall a a' b c f. (Profunctor f) => Iso a a' -> Iso (f a b) (f a' b)
 ```
+
+$a = a\prime \implies f(a, b) = f(a\prime, b)$
 
 

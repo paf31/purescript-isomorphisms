@@ -9,5 +9,10 @@
     "node_modules",
     "bower_components",
     "output"
-  ]
+  ],
+  "devDependencies": {
+    "purescript-spec": "~0.7.1",
+    "purescript-spec-quickcheck": "~0.3.0",
+    "purescript-quickcheck": "~0.7.0"
+  }
 }

@@ -12,7 +12,7 @@ import Test.Spec.Reporter.Console (consoleReporter)
 import Test.Spec.Runner           (run)
 import Test.Spec.QuickCheck       (quickCheck)
 import Test.QuickCheck            (Result(), (===))
-import Test.QuickCheck.Arbitrary  (Arbitrary)
+import Test.QuickCheck.Arbitrary  (class Arbitrary)
 
 import Data.Iso
 

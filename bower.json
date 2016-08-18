@@ -10,13 +10,14 @@
     "bower_components",
     "output"
   ],
+  "license": "MIT"
   "repository": {
     "type": "git",
     "url": "git://github.com/paf31/purescript-isomorphisms.git"
   },
   "devDependencies": {
-    "purescript-spec": "^0.7.1",
-    "purescript-spec-quickcheck": "git@github.com:paf31/purescript-spec-quickcheck.git#be497f7b6221e5859065b6fa3bc50e13ff2b3ff0",
+    "purescript-spec": "^0.8.0",
+    "purescript-spec-quickcheck": "^0.9.1",
     "purescript-quickcheck": "^1.0.0"
   },
   "dependencies": {

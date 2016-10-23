@@ -20,5 +20,8 @@
     "purescript-either": "^2.0.0",
     "purescript-contravariant": "^2.0.0",
     "purescript-profunctor": "^2.0.0"
+  },
+  "devDependencies": {
+    "purescript-quickcheck": "^3.0.0"
   }
 }

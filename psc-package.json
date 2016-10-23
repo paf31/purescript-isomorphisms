@@ -1,0 +1,21 @@
+{
+    "name": "isomorphisms",
+    "source": "https://github.com/purescript/package-sets.git",
+    "set": "psc-0.10.1",
+    "depends": [
+      "bifunctors",
+      "contravariant",
+      "control",
+      "distributive",
+      "either",
+      "foldable-traversable",
+      "identity",
+      "invariant",
+      "maybe",
+      "monoid",
+      "newtype",
+      "prelude",
+      "profunctor",
+      "tuples"
+    ]
+}

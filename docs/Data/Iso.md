@@ -195,4 +195,20 @@ profunctorCongLeft :: forall a a' b f. Profunctor f => a ≅ a' -> (f a b) ≅ (
 
 $a = a\prime \implies f(a, b) = f(a\prime, b)$
 
+#### `newtypeIso`
+
+``` purescript
+newtypeIso :: forall n o. Newtype n o => n ≅ o
+```
+
+Newtypes are isomorphic to their underlying types.
+
+#### `across`
+
+``` purescript
+across :: forall p a b. Profunctor p => a ≅ b -> p b b -> p a a
+```
+
+Extend an `Isomorphism` across the two type arguments of a `Profunctor`.
+
 

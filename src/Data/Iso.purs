@@ -6,6 +6,7 @@ import Data.Bifunctor as B
 import Data.Either (Either(..), either)
 import Data.Functor.Contravariant (class Contravariant, cmap)
 import Data.Maybe (Maybe(..), maybe)
+import Data.Newtype (class Newtype, wrap, unwrap)
 import Data.Profunctor as P
 import Data.Tuple (Tuple(..), swap, fst, snd, curry, uncurry)
 
@@ -118,6 +119,14 @@ contraCong (Iso f g) = Iso (cmap g) (cmap f)
 -- | $a = a\prime \implies f(a, b) = f(a\prime, b)$
 profunctorCongLeft :: forall a a' b f. P.Profunctor f => a ≅ a' -> f a b ≅ f a' b
 profunctorCongLeft (Iso f g) = Iso (P.lmap g) (P.lmap f)
+
+-- | Newtypes are isomorphic to their underlying types.
+newtypeIso :: forall n o. Newtype n o => n ≅ o
+newtypeIso = Iso unwrap wrap
+
+-- | Extend an `Isomorphism` across the two type arguments of a `Profunctor`.
+across :: forall p a b. P.Profunctor p => a ≅ b -> p b b -> p a a
+across (Iso f g) = P.dimap f g
 
 -- | $b = c \wedge a = b \implies a = c$
 instance semigroupoidIso :: Semigroupoid Iso where

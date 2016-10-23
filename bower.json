@@ -15,11 +15,6 @@
     "type": "git",
     "url": "git://github.com/paf31/purescript-isomorphisms.git"
   },
-  "devDependencies": {
-    "purescript-spec": "^0.8.0",
-    "purescript-spec-quickcheck": "^0.9.1",
-    "purescript-quickcheck": "^2.0.0"
-  },
   "dependencies": {
     "purescript-bifunctors": "^2.0.0",
     "purescript-either": "^2.0.0",

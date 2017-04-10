@@ -1,6 +1,6 @@
 module Test.Main where
 
-import Prelude (class Show, class Eq, Unit, bind, id, (<<<))
+import Prelude (class Show, class Eq, Unit, bind, discard, id, (<<<))
 
 import Control.Monad.Eff.Console (log)
 import Data.Either (Either)
@@ -49,8 +49,13 @@ main = do
    -}
 
 
-testIso :: forall a b.
-           (Arbitrary a, Arbitrary b, Eq a, Eq b, Show a, Show b)
+testIso :: forall a b
+         . Arbitrary a
+        => Arbitrary b
+        => Eq a
+        => Eq b
+        => Show a
+        => Show b
         => Iso a b
         -> QC () Unit
 testIso iso = do
@@ -59,8 +64,10 @@ testIso iso = do
   log "has `forward <<< backward` as the identity"
   isId (forwards iso <<< backwards iso)
 
-isId :: forall a.
-        (Arbitrary a, Eq a, Show a)
+isId :: forall a
+      . Arbitrary a
+     => Eq a
+     => Show a
      => (a -> a)
      -> QC () Unit
 isId f = quickCheck \x -> f x === x

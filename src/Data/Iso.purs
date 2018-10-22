@@ -13,8 +13,8 @@ import Data.Tuple (Tuple(..), swap, fst, snd, curry, uncurry)
 -- | An isomorphism between types `a` and `b` consists of a pair of functions
 -- | `f :: a -> b` and `g :: b -> a`, satisfying the following laws:
 -- |
--- | - `f <<< g = id`
--- | - `g <<< f = id`
+-- | - `f <<< g = identity`
+-- | - `g <<< f = identity`
 -- |
 -- | The isomorphisms in this library satisfy these laws by construction.
 data Iso a b = Iso (a -> b) (b -> a)
@@ -53,7 +53,7 @@ prodZeroZero = Iso fst absurd
 
 -- | $0 + a = a$
 coprodIdent :: forall a. Either Void a ≅ a
-coprodIdent = Iso (either absurd id) Right
+coprodIdent = Iso (either absurd identity) Right
 
 -- | $a + (b + c) = (a + b) + c$
 coprodAssoc :: forall a b c. Either a (Either b c) ≅ Either (Either a b) c
@@ -118,7 +118,7 @@ contraCong (Iso f g) = Iso (cmap g) (cmap f)
 
 -- | $a = a\prime \implies f(a, b) = f(a\prime, b)$
 profunctorCongLeft :: forall a a' b f. P.Profunctor f => a ≅ a' -> f a b ≅ f a' b
-profunctorCongLeft (Iso f g) = Iso (P.lmap g) (P.lmap f)
+profunctorCongLeft (Iso f g) = Iso (P.lcmap g) (P.lcmap f)
 
 -- | Newtypes are isomorphic to their underlying types.
 newtypeIso :: forall n o. Newtype n o => n ≅ o
@@ -134,4 +134,4 @@ instance semigroupoidIso :: Semigroupoid Iso where
 
 -- | $a = a$
 instance categoryIso :: Category Iso where
-  id = Iso id id
+  identity = Iso identity identity

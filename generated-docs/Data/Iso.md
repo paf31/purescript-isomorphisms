@@ -10,8 +10,8 @@ data Iso a b
 An isomorphism between types `a` and `b` consists of a pair of functions
 `f :: a -> b` and `g :: b -> a`, satisfying the following laws:
 
-- `f <<< g = id`
-- `g <<< f = id`
+- `f <<< g = identity`
+- `g <<< f = identity`
 
 The isomorphisms in this library satisfy these laws by construction.
 

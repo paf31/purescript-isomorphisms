@@ -1,7 +1,7 @@
 {
     "name": "isomorphisms",
     "source": "https://github.com/purescript/package-sets.git",
-    "set": "psc-0.11.3",
+    "set": "psc-0.12.0",
     "depends": [
       "bifunctors",
       "contravariant",
@@ -12,7 +12,6 @@
       "identity",
       "invariant",
       "maybe",
-      "monoid",
       "newtype",
       "prelude",
       "profunctor",

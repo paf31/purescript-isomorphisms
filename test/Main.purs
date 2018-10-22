@@ -1,22 +1,23 @@
 module Test.Main where
 
-import Prelude (class Show, class Eq, Unit, bind, discard, id, (<<<))
+import Test.QuickCheck
 
-import Control.Monad.Eff.Console (log)
 import Data.Either (Either)
 import Data.Iso (Iso, backwards, forwards, onePlusOneIsTwo, onePlusMaybe, distribute, coprodComm, coprodAssoc, prodComm, prodAssoc, prodIdent)
 import Data.Maybe (Maybe)
 import Data.Tuple (Tuple)
-import Test.QuickCheck
+import Effect (Effect)
+import Effect.Class.Console (log)
+import Prelude (class Eq, class Show, Unit, discard, identity, (<<<))
 
 type A = Int
 type B = String
 type C = Boolean
 
 -- Most of the isomorphisms should have fairly strong parametric guarantees
-main :: QC () Unit
+main :: Effect Unit
 main = do
-  testIso (id :: Iso A A)
+  testIso (identity :: Iso A A)
   {- compose
    - sym
    -}
@@ -57,7 +58,7 @@ testIso :: forall a b
         => Show a
         => Show b
         => Iso a b
-        -> QC () Unit
+        -> Effect Unit
 testIso iso = do
   log "has `backward <<< forward` as the identity"
   isId (backwards iso <<< forwards iso)
@@ -69,5 +70,5 @@ isId :: forall a
      => Eq a
      => Show a
      => (a -> a)
-     -> QC () Unit
+     -> Effect Unit
 isId f = quickCheck \x -> f x === x
